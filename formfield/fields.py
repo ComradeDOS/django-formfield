@@ -67,7 +67,8 @@ class FormField(forms.MultiValueField):
         self.form = form_class()
 
         # Set the widget and initial data
-        kwargs['widget'] = FormFieldWidget([f for f in self.form])
+        widget = kwargs.get('widget', FormFieldWidget)
+        kwargs['widget'] = widget([f for f in self.form])
         kwargs['initial'] = [f.field.initial for f in self.form]
         # The field it self should not be required, this allows us to
         # have optional fields in a sub form
