@@ -76,7 +76,7 @@ class FormField(forms.MultiValueField):
 
         self.max_length = kwargs.pop('max_length', None)
 
-        super(FormField, self).__init__(**kwargs)
+        super(FormField, self).__init__(fields=self.form.fields.values(), **kwargs)
 
         self.fields = [f.field for f in self.form]
 
